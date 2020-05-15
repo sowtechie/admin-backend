@@ -1,0 +1,50 @@
+<html>
+<head>
+    <script>
+        function submitParserSettings() {
+            var ele = document.getElementsByName('parser');
+            var isParserOn = false;
+            if (ele[0].checked) {
+                isParserOn = true;
+            }
+
+            // var rulesURL = 'http://localhost:8081/rules/getRules';
+            var parserURL = 'http://localhost:8081/adminRules/getRules?parser=true';
+            var request = new XMLHttpRequest()
+            request.open('GET', parserURL, true);
+
+         request.onload = function() {
+              // Begin accessing JSON data here
+              var data = JSON.parse(this.response)
+              console.log(data, 'is resp');
+              if (request.status >= 200 && request.status < 400) {
+                   var resp = document.getElementsByName('parser');
+                    resp.innerText = data;
+              } else {
+                alert("Backend error");
+              }
+        }
+        request.send();
+}
+
+
+        
+
+    </script>
+</head>
+<body style="margin: 50px">
+    <h2>
+        Admin settings
+    </h2>
+    <form action="/adminRules/getRules?">
+        <label for="parser">Parser Mode</label>
+        <div style="padding: 12px">
+            <input type="radio" name="parser" value="true"> On<br>
+            <input type="radio" name="parser" value="false"> Off<br>
+        </div>
+        <button style="border-radius: 6px; width: 100px; padding: 4px;">Submit</button>
+
+        <div id="resp"></div>
+    </form>
+</body>
+</html>

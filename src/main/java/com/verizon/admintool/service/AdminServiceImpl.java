@@ -24,8 +24,12 @@ public class AdminServiceImpl implements AdminService {
         rules.add(adminRule2);
     }
 
-    public List<AdminRule> getRules() {
-        return rules;
+    public List<AdminRule> getRules(Boolean considerParser) {
+        List<AdminRule> modifiedrules = new ArrayList<>(rules);
+        if (considerParser) {
+            modifiedrules.remove(0);
+        }
+        return modifiedrules;
     }
 
     public AdminRule getRule(Integer ruleId) {

@@ -9,16 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rules")
-@CrossOrigin(origins = "http://localhost:8080")
+@RequestMapping("/adminRules")
+@CrossOrigin(origins = "*")
 public class AdminController {
 
     @Autowired
     private AdminService adminService;
 
     @GetMapping("/getRules")
-    public List<AdminRule> getRules() {
-        return adminService.getRules();
+    public List<AdminRule> getRules(@RequestParam Boolean parser) {
+        System.out.println(parser);
+        return adminService.getRules(parser);
     }
 
     @GetMapping("/getRule")

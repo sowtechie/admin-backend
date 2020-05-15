@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface AdminService {
-    public List<AdminRule> getRules();
+    public List<AdminRule> getRules(Boolean considerParser);
 
     public AdminRule getRule(Integer ruleId);
 }
