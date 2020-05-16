@@ -1,5 +1,6 @@
 package com.verizon.admintool.service;
 
+import com.verizon.admintool.model.AdminRequest;
 import com.verizon.admintool.model.AdminRule;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,8 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
     List<AdminRule> rules = new ArrayList<>();// Create new List of rules object
+    Boolean parserMode = false;
+
     public AdminServiceImpl() {
         AdminRule adminRule = new AdminRule();//Create AdminRule object
         adminRule.setRuleId(123); // Set values in that object
@@ -24,9 +27,9 @@ public class AdminServiceImpl implements AdminService {
         rules.add(adminRule2);
     }
 
-    public List<AdminRule> getRules(Boolean considerParser) {
+    public List<AdminRule> getRules() {
         List<AdminRule> modifiedrules = new ArrayList<>(rules);
-        if (considerParser) {
+        if (this.parserMode) {
             modifiedrules.remove(0);
         }
         return modifiedrules;
@@ -39,5 +42,9 @@ public class AdminServiceImpl implements AdminService {
             }
         };
         return null;
+    }
+
+    public void setParser(AdminRequest adminRequest) {
+        this.parserMode = adminRequest.getParser();
     }
 }
