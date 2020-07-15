@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/urlmanager")
 @CrossOrigin(origins = "*")
 public class UrlManagerController {
     @Autowired

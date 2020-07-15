@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/manager")
 @CrossOrigin(origins = "*")
 public class ManagerController {
     @Autowired
@@ -25,14 +24,7 @@ public class ManagerController {
 
     @GetMapping("/groupnames")
     public String getGroupNames() {
-        return "[\n" +
-                "    {\n" +
-                "        \"groupName\": \"Billing\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"groupName\": \"Accounts\"\n" +
-                "    }\n" +
-                "]\n";
+        return "[\"Billing\", \"Account\"]\n";
 //        return "[\n" +
 //                "        {\n" +
 //                "            \"text\": \"Order\",\n" +
@@ -67,6 +59,7 @@ public class ManagerController {
     public AdminRule getRule(@RequestParam Integer ruleId) {
         return adminService.getRule(ruleId);
     }
+
 
 
 //
