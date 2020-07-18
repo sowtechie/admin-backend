@@ -59,6 +59,12 @@ public class ManagerController {
     public AdminRule getRule(@RequestParam Integer ruleId) {
         return adminService.getRule(ruleId);
     }
+    
+    @PostMapping("/rule")
+    public String publish(@RequestBody String payload) {
+        System.out.println(payload);
+        return "Published successfully";
+    }
 
 
 
